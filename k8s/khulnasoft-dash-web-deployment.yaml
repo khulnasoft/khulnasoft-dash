@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: khulnasoft-dash-web
+  namespace: khulnasoft
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      run: khulnasoft-dash-web
+  template:
+    metadata:
+      labels:
+        run: khulnasoft-dash-web
+    spec:
+      containers:
+      - image: bitsanjay198/khulnasoft-dash:latest
+        imagePullPolicy: IfNotPresent
+        name: khulnasoft-dash-web
+        ports:
+        - containerPort: 80
+          protocol: TCP

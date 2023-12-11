@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: khulnasoft-dash-web-ingress
+  namespace: khulnasoft
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - host: khulnasoft-dash.example.com
+    http:
+      paths:
+        - path: /
+          backend:
+            serviceName: khulnasoft-dash-web
+            servicePort: 3000
+        - path: /api
+          backend:
+            serviceName: khulnasoft-web
+            servicePort: 8080
+  - host: khulnasoft-web.example.com
+    http:
+      paths:
+      - backend:
+          serviceName: khulnasoft-web
+          servicePort: 8080
